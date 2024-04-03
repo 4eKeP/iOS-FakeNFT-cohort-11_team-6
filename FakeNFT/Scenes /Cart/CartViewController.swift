@@ -81,7 +81,7 @@ final class CartViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         mockData.isEmpty ? setupEmptyViews() : setupAllViews()
-        print("Sprint19_Cart1/3")
+        print("Sprint19_Cart2/3")
     }
     
     @objc func addButtonTapped() {
