@@ -7,13 +7,20 @@
 
 import UIKit
 
+protocol NftDeleteDelegate: AnyObject {
+    func deleteNFT(at index: IndexPath)
+}
+
 class DeleteViewController: UIViewController {
     
-    let index: IndexPath? = nil
+    weak var delegate: NftDeleteDelegate?
+    
+    var index: IndexPath? = nil
+    var image: UIImage?
     
     lazy var nftImage: UIImageView = {
         let imageView = UIImageView()
-        let image = UIImage(named: "1-1")
+        let image = image
         imageView.image = image
         imageView.layer.masksToBounds = true
         imageView.layer.cornerRadius = 12
@@ -21,7 +28,7 @@ class DeleteViewController: UIViewController {
         return imageView
     }()
     
-    private let textLabel: UILabel = {
+    private lazy var textLabel: UILabel = {
        let label = UILabel()
         label.text = "Вы уверены, что хотите удалить объект из корзины?"
         label.textAlignment = .center
@@ -62,7 +69,7 @@ class DeleteViewController: UIViewController {
         return button
     }()
     
-    private let buttonStackView: UIStackView = {
+    private lazy var buttonStackView: UIStackView = {
        let stack = UIStackView()
         stack.axis = .horizontal
         stack.spacing = 8
@@ -72,21 +79,34 @@ class DeleteViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Delete this ")
         setupViews()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        removeBlurEffect()
+    }
+    
+    // метод удаления блюра
+    private func removeBlurEffect() {
+        guard let window = UIApplication.shared.windows.first else { return }
+        for subview in window.subviews {
+            if let blurView = subview as? UIVisualEffectView {
+                blurView.removeFromSuperview()
+            }
+        }
     }
     
     @objc private func removeNftButtonClicked() {
         print("Удалить")
-        let vc = CartViewController()
-        vc.removeBlurEffect()
+        guard let index = index else { return }
+        delegate?.deleteNFT(at: index)
         dismiss(animated: true)
     }
     
     @objc private func backNftButtonClicked() {
         print("Назад")
         let vc = CartViewController()
-        vc.removeBlurEffect()
         dismiss(animated: true)
     }
     
@@ -111,3 +131,5 @@ class DeleteViewController: UIViewController {
         ])
     }
 }
+
+

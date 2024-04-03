@@ -80,12 +80,7 @@ class PayNftViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        title = "Выберите способ оплаты"
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        let backButtonImage = UIImage(systemName: "chevron.left")?.withTintColor(.black, renderingMode: .alwaysOriginal)
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: backButtonImage, style: .plain, target: self, action: #selector(dismissModal))
-        setupViews()
+        configureVC()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -93,6 +88,15 @@ class PayNftViewController: UIViewController {
         if back {
             dismissModal()
         }
+    }
+    
+    private func configureVC() {
+        view.backgroundColor = .white
+        title = "Выберите способ оплаты"
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        let backButtonImage = UIImage(systemName: "chevron.left")?.withTintColor(.black, renderingMode: .alwaysOriginal)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: backButtonImage, style: .plain, target: self, action: #selector(dismissModal))
+        setupViews()
     }
     
     @objc func payButtonClicked() {
@@ -168,9 +172,7 @@ extension PayNftViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CryptoCell", for: indexPath) as? CryptoWalletCell else {
-            return UICollectionViewCell()
-        }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CryptoCell", for: indexPath) as! CryptoWalletCell
         
         let imageName = cryptoImage[indexPath.row]
         let image = UIImage(named: imageName)
@@ -196,7 +198,7 @@ extension PayNftViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellWidth: CGFloat = 168
-        let cellHeight: CGFloat = 46 // Желаемая высота ячейки
+        let cellHeight: CGFloat = 46
 
         return CGSize(width: cellWidth, height: cellHeight)
     }
@@ -218,5 +220,4 @@ extension PayNftViewController: UICollectionViewDelegateFlowLayout {
             cell.layer.borderWidth = 0 // Сбрасываем толщину рамки
         }
     }
-
 }
