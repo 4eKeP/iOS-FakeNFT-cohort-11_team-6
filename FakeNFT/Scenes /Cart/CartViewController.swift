@@ -7,8 +7,18 @@
 
 import UIKit
 
+protocol CartView: AnyObject {
+    func showLoader()
+    func hideLoader()
+    func displayEmptyCart()
+    func displayNFTs(_ nfts: [Nft])
+    func displayError(_ message: String)
+}
+
 final class CartViewController: UIViewController {
     
+    var presenter: CartPresenter!
+        
     private var cartId: String = ""
     
     private var cellCount: Double = 0
@@ -92,7 +102,6 @@ final class CartViewController: UIViewController {
         return button
     }()
     
-    //MARK: активировать пустой экран
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -107,6 +116,8 @@ final class CartViewController: UIViewController {
     }
     
     private func configureVC() {
+        presenter = CartPresenter(view: self, cartService: CartServiceImpl(networkClient: DefaultNetworkClient()), nftService: NftServiceImpl(networkClient: DefaultNetworkClient(), storage: NftStorageImpl()))
+        presenter.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         setupAllViews()
@@ -214,20 +225,6 @@ final class CartViewController: UIViewController {
         vc.image = image
         vc.index = index
         present(vc, animated: true)
-    }
-    
-    //индикатор загрузки показать
-    func showLoader() {
-        loaderIndicator.isHidden = false
-        UIView.animate(withDuration: 1, delay: 0, options: [.repeat, .curveLinear], animations: {
-            self.loaderIndicator.transform = self.loaderIndicator.transform.rotated(by: .pi)
-        }, completion: nil)
-    }
-    
-    //индикатор загрузки убрать
-    func hideLoader() {
-        loaderIndicator.isHidden = true
-        loaderIndicator.layer.removeAllAnimations()
     }
     
     //применяем блюр
@@ -370,5 +367,33 @@ extension CartViewController: NftDeleteDelegate {
         arrOfNFT.remove(at: index.row)
         setupEmptyOrNftViews()
         tableView.reloadData()
+    }
+}
+
+extension CartViewController: CartView {
+    //индикатор загрузки показать
+    func showLoader() {
+        loaderIndicator.isHidden = false
+        UIView.animate(withDuration: 1, delay: 0, options: [.repeat, .curveLinear], animations: {
+            self.loaderIndicator.transform = self.loaderIndicator.transform.rotated(by: .pi)
+        }, completion: nil)
+    }
+    
+    //индикатор загрузки убрать
+    func hideLoader() {
+        loaderIndicator.isHidden = true
+        loaderIndicator.layer.removeAllAnimations()
+    }
+    
+    func displayEmptyCart() {
+        emptyCart.isHidden = false
+    }
+    
+    func displayNFTs(_ nfts: [Nft]) {
+        tableView.reloadData()
+    }
+    
+    func displayError(_ message: String) {
+        // Display error message
     }
 }
