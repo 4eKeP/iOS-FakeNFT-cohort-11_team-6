@@ -18,6 +18,16 @@ final class CartViewController: UIViewController {
     private var idAddedToCart: Set<String> = []
     private var arrOfNFT: [Nft] = []
     
+    private lazy var loaderIndicator: UIImageView = {
+       let image = UIImage(named: "Loader")
+        let imageView = UIImageView(image: image)
+        imageView.heightAnchor.constraint(equalToConstant: 25).isActive = true
+        imageView.widthAnchor.constraint(equalToConstant: 25).isActive = true
+        imageView.isHidden = true
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
     private lazy var emptyCart: UILabel = {
        let label = UILabel()
         label.text = "Корзина пуста"
@@ -86,15 +96,24 @@ final class CartViewController: UIViewController {
         view.backgroundColor = .systemBackground
         configureVC()
         loadCart(httpMethod: .get) {[weak self] error in
+            self?.showLoader()
             self?.processNFTsLoading()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                self?.hideLoader()
+            }
         }
     }
     
     private func configureVC() {
         tableView.delegate = self
         tableView.dataSource = self
-        //setupEmptyOrNftViews()
         setupAllViews()
+        view.addSubview(loaderIndicator)
+        NSLayoutConstraint.activate([
+            loaderIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loaderIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+        setupEmptyOrNftViews()
     }
     
     private func setupEmptyOrNftViews() {
@@ -104,6 +123,7 @@ final class CartViewController: UIViewController {
             nftPrice.text = "0,0 ETH"
         } else {
             setupAllViews()
+            emptyCart.isHidden = false
         }
     }
     
@@ -138,6 +158,7 @@ final class CartViewController: UIViewController {
             case .failure(let error):
                print(error)
             }
+            self.setupEmptyOrNftViews()
         }
     }
     
@@ -192,6 +213,20 @@ final class CartViewController: UIViewController {
         present(vc, animated: true)
     }
     
+    //индикатор загрузки показать
+    func showLoader() {
+        loaderIndicator.isHidden = false
+        UIView.animate(withDuration: 1, delay: 0, options: [.repeat, .curveLinear], animations: {
+            self.loaderIndicator.transform = self.loaderIndicator.transform.rotated(by: .pi)
+        }, completion: nil)
+    }
+    
+    //индикатор загрузки убрать
+    func hideLoader() {
+        loaderIndicator.isHidden = true
+        loaderIndicator.layer.removeAllAnimations()
+    }
+    
     //применяем блюр
     private func applyBlurEffect() {
         guard let window = UIApplication.shared.windows.first else { return }
@@ -223,13 +258,13 @@ final class CartViewController: UIViewController {
         addButton.tintColor = .black
         navigationItem.rightBarButtonItem = addButton
         view.addSubview(tableView)
-        
         view.addSubview(bottomView)
         bottomView.addSubview(nftCount)
         bottomView.addSubview(nftPrice)
         bottomView.addSubview(buttonPay)
         
         NSLayoutConstraint.activate([
+            
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
