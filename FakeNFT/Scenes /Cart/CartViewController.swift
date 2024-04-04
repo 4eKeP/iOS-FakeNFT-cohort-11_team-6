@@ -9,6 +9,8 @@ import UIKit
 
 final class CartViewController: UIViewController {
     
+    private var cartId: String = ""
+    
     private var cellCount: Double = 0
     private var mockID: [String] = []
     private var loadImages = LoadNftImages()
@@ -135,13 +137,14 @@ final class CartViewController: UIViewController {
             case .success(let cart):
                 idAddedToCart = Set(cart.nfts)
                 completion(nil)
+                cartId = cart.id
             case .failure(let error):
                 print(error)
                 completion(error)
             }
         }
     }
-    
+        
     private func processNFTsLoading() {
         for id in idAddedToCart {
             loadNft(id: id)
