@@ -101,7 +101,7 @@ final class CollectionViewController: UIViewController, ErrorView {
         return button
     }()
     
-    private let presenter: CollectionViewControllerPresenter
+    private let presenter: CollectionViewControllerProtocol
     
     //MARK: - Constants
     
@@ -126,7 +126,7 @@ final class CollectionViewController: UIViewController, ErrorView {
         return statusBarHeight + navBarHeight
     }
     
-    init(presenter: CollectionViewControllerPresenter) {
+    init(presenter: CollectionViewControllerProtocol) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
@@ -158,7 +158,7 @@ final class CollectionViewController: UIViewController, ErrorView {
     }
     
     func reloadCollectionForLikesAndCard(with nfts: [CollectionCellModel], id: String?, isCart: Bool?) {
-        for (index, nft) in nfts.enumerated() {
+        for (index, _) in nfts.enumerated() {
             if let cell = nftCollectionView.cellForItem(at: IndexPath(item: index, section: 0)) as? NFTCollectionViewCellThreePerRow {
                 let retunedNft = presenter.returnCollectionCell(for: index)
                 cell.set(data: retunedNft)

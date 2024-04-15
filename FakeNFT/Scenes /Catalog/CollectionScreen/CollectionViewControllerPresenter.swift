@@ -9,7 +9,15 @@ import UIKit
 import SafariServices
 import ProgressHUD
 
-final class CollectionViewControllerPresenter {
+protocol CollectionViewControllerProtocol: NFTCollectionViewCellThreePerRowDelegate {
+    var nftArray: [Nft] { get }
+    func controllerDidLoad()
+    func returnCollectionCell(for index: Int) -> CollectionCellModel
+    func authorLinkTapped()
+    func backButtonTapped()
+}
+
+final class CollectionViewControllerPresenter: CollectionViewControllerProtocol {
     
     weak var viewController: CollectionViewController?
     private let dispatchGroup = DispatchGroup()
