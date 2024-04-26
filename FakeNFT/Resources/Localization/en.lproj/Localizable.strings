@@ -1,0 +1,40 @@
+/* 
+  Localizable.strings
+  FakeNFT
+
+  Created by admin on 18.04.2024.
+  
+*/
+
+//PreviewLabels
+"Tab.catalog" = "Catalog";
+"Error.network" = "A network error has occurred";
+"Error.unknown" = "An unknown error has occurred";
+"Error.repeat" = "Repeat";
+"Error.title" = "Error";
+"Error.cancel" = "Cancel";
+
+// CatalogVC
+"catalog.Sorting" = "Sorting";
+"catalog.SortByName" = "By name";
+"catalog.SortByNFTCount" = "By number of NFTs";
+"catalog.Close" = "Close";
+"catalog.openNft" = "Open Nft";
+
+// CollectionVC
+"catalog.collection.AboutAuthor" = "Author of the collection:";
+
+// TabBarController
+"tabBar.profileTabBarTitle" = "Profile";
+"tabBar.catalogTabBarTitle" = "Catalog";
+"tabBar.cartTabBarTitle" = "Cart";
+"tabBar.statisticTabBarTitle" = "Statistics";
+
+// OnboardingVC
+"onBoarding.firstHeader" = "Explore";
+"onBoarding.firstDescription" = "Join us and discover a new world of unique NFTs for collectors";
+"onBoarding.secondHeader" = "Collect";
+"onBoarding.secondDescription" = "Expand your collection with exclusive\npictures created by the neural network!";
+"onBoarding.thirdHeader" = "Compete";
+"onBoarding.thirdDescription" = "See the statistics of others and show everyone that you have the most valuable collection";
+"onBoarding.onboardingButton" = "What is inside?";

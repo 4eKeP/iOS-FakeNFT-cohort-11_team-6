@@ -37,5 +37,5 @@ final class TestCatalogViewController: UIViewController {
 
 private enum Constants {
     static let openNftTitle = NSLocalizedString("Catalog.openNft", comment: "")
-    static let testNftId = "22"
+    static let testNftId = "e8c1f0b6-5caf-4f65-8e5b-12f4bcb29efb"
 }

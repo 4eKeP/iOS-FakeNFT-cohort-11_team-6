@@ -1,0 +1,40 @@
+/* 
+  Localizable.strings
+  FakeNFT
+
+  Created by admin on 18.04.2024.
+  
+*/
+
+//PreviewLabels
+"Tab.catalog" = "Katalog";
+"Error.network" = "Es ist ein Netzwerkfehler aufgetreten";
+"Error.unknown" = "Ein unbekannter Fehler ist aufgetreten";
+"Error.repeat" = "Wiederholen";
+"Error.title" = "Fehler";
+"Error.cancel" = "Stornieren";
+
+// CatalogVC
+"catalog.Sorting" = "Sortieren";
+"catalog.SortByName" = "Nach Name";
+"catalog.SortByNFTCount" = "Nach Anzahl der NFTs";
+"catalog.Close" = "Schließen";
+"catalog.openNft" = "Öffnen Sie Nft";
+
+// CollectionVC
+"catalog.collection.AboutAuthor" = "Autor der Sammlung:";
+
+// TabBarController
+"tabBar.profileTabBarTitle" = "Profil";
+"tabBar.catalogTabBarTitle" = "Katalog";
+"tabBar.cartTabBarTitle" = "Warenkorb";
+"tabBar.statisticTabBarTitle" = "Statistiken";
+
+// OnboardingVC
+"onBoarding.firstHeader" = "Erforschen";
+"onBoarding.firstDescription" = "Treten Sie bei und entdecken Sie eine neue Welt von einzigartigen NFTs für Sammler";
+"onBoarding.secondHeader" = "Sammeln";
+"onBoarding.secondDescription" = "Erweitern Sie Ihre Sammlung mit exklusiven Bildern, die von KI erstellt wurden!";
+"onBoarding.thirdHeader" = "Wettbewerb";
+"onBoarding.thirdDescription" = "Sehen Sie sich die Statistiken anderer an und zeigen Sie allen, dass Sie die wertvollste Sammlung haben";
+"onBoarding.onboardingButton" = "Was ist drin?";
