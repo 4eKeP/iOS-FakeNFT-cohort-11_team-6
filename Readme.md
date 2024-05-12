@@ -1,3 +1,19 @@
+**Демонстрация экрана Каталог:**
+  
+![Simulator Screen Recording - iPhone 15 - 2024-04-21 at 22 24 37](https://github.com/4eKeP/iOS-FakeNFT-cohort-11_team-6/assets/76837873/526a38ef-3f93-4795-9b4c-e0fc82c55266)
+
+**Демонстрация экрана Корзина:**
+
+![Simulator Screen Recording - iPhone 15 - 2024-04-21 at 21 39 14](https://github.com/4eKeP/iOS-FakeNFT-cohort-11_team-6/assets/136503343/4165f8ce-0eb9-4a1d-9698-55d053d62d95)
+
+**Демонстрация экрана Профиля:**
+
+![Simulator Screen Recording - iPhone 15 - 2024-04-21 at 23 39 54](https://github.com/4eKeP/iOS-FakeNFT-cohort-11_team-6/assets/136311088/0919383b-e2cf-4828-80ed-53a050d94a56)
+
+**Демонстрация экрана Статистика:**
+
+![Simulator Screen Recording - iPhone 15 - 2024-04-21 at 22 45 43](https://github.com/4eKeP/iOS-FakeNFT-cohort-11_team-6/assets/76837873/7883c67c-fe57-4b19-ad76-c51b73b58e68)
+
 # ТЗ мобильного приложения FakeNFT
 
 # Ссылки
@@ -201,19 +217,3 @@
 - экран «Корзина» — по названию;
 - экран «Мои NFT» — по рейтингу;
 - экран «Статистика» — по рейтингу.
-
-**Демонстрация экрана Каталог:**
-  
-![Simulator Screen Recording - iPhone 15 - 2024-04-21 at 22 24 37](https://github.com/4eKeP/iOS-FakeNFT-cohort-11_team-6/assets/76837873/526a38ef-3f93-4795-9b4c-e0fc82c55266)
-
-**Демонстрация экрана Корзина:**
-
-![Simulator Screen Recording - iPhone 15 - 2024-04-21 at 21 39 14](https://github.com/4eKeP/iOS-FakeNFT-cohort-11_team-6/assets/136503343/4165f8ce-0eb9-4a1d-9698-55d053d62d95)
-
-**Демонстрация экрана Профиля:**
-
-![Simulator Screen Recording - iPhone 15 - 2024-04-21 at 23 39 54](https://github.com/4eKeP/iOS-FakeNFT-cohort-11_team-6/assets/136311088/0919383b-e2cf-4828-80ed-53a050d94a56)
-
-**Демонстрация экрана Статистика:**
-
-![Simulator Screen Recording - iPhone 15 - 2024-04-21 at 22 45 43](https://github.com/4eKeP/iOS-FakeNFT-cohort-11_team-6/assets/76837873/7883c67c-fe57-4b19-ad76-c51b73b58e68)
